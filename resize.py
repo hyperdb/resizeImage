@@ -74,7 +74,8 @@ def main():
 
     args = parser.parse_args()
 
-    images = glob.glob(os.path.join(args.input_dir, "*.png"))
+    # サブディレクトリを含めて再帰的にPNG画像を検索
+    images = glob.glob(os.path.join(args.input_dir, "**", "*.png"), recursive=True)
     for img_path in images:
         resize_image(img_path, args.output, size=(args.width, args.height))
 
